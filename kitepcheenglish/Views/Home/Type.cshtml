@@ -64,17 +64,13 @@
 <body>
 
     <div id="app">
-        <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
-            <h5 class="my-0 mr-md-auto text-success font-weight-normal">Kitepche English</h5>
+        <div class="d-flex flex-column flex-md-row align-items-center p-1 px-md-4 mb-1 bg-white border-bottom shadow-sm">
             <nav class="my-2 my-md-0 mr-md-3">
                 <a class="p-2 text-dark" href="/Watch">Watch</a>
                 <a class="p-2 text-dark" href="/Type">Type</a>
             </nav>
         </div>
 
-        <br>
-        <br>
-        <br>
         <div class="container pt-md-5">
             <div class="row p-2 justify-content-end">
 
@@ -98,10 +94,10 @@
                     </div>
                     <br>
                     <div class="p-3">
-                        <p class="">{{definition}}</p>
+                        <p class="" style="font-size: 20px;">{{definition}}</p>
                     </div>
                     <div class="p-3">
-                        <p class="text-muted">{{fulltext}}</p>
+                        <p class="text-muted" style="font-size: 20px;">{{fulltext}}</p>
                     </div>
                     <br>
                     <button class="btn btn-lg btn-light btn-block" v-on:click="showWord" type="submit">show</button>

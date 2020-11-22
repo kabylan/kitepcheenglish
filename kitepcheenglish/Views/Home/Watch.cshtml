@@ -62,17 +62,13 @@
 <body>
 
     <div id="app">
-        <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
-            <h5 class="my-0 mr-md-auto text-success font-weight-normal">Kitepche English</h5>
+        <div class="d-flex flex-column flex-md-row align-items-center p-1 px-md-4 mb-1 bg-white border-bottom shadow-sm">
             <nav class="my-2 my-md-0 mr-md-3">
                 <a class="p-2 text-dark" href="/Watch">Watch</a>
                 <a class="p-2 text-dark" href="/Type">Type</a>
             </nav>
         </div>
 
-        <br>
-        <br>
-        <br>
         <div class="container pt-md-5">
             <div class="row p-2 justify-content-end">
 
@@ -89,12 +85,12 @@
                 <div class="card-body">
                     <h1 class="card-title pricing-card-title">{{word}}</h1>
                     <br>
-                    <h6 class="text-muted">{{synonym}}</h6>
+                    <h4 class="text-muted" style="font-size: 18px;">{{synonym}}</h4>
                     <br>
                     <ul class="list-unstyled mt-3 mb-4">
-                        <li class="">{{definition}}</li>
+                        <li style="font-size: 20px;">{{definition}}</li>
                         <br>
-                        <li class="text-muted">{{example}}</li>
+                        <li class="text-muted" style="font-size: 20px;">{{example}}</li>
                     </ul>
                 </div>
             </div>
@@ -111,7 +107,7 @@
                 currentindex: 0,
                 range: [1, words.length],
                 rangestring: 1 + '-' + words.length,
-                timespeed: 60,
+                timespeed: 40,
                 orderrandom: false,
                 word: '',
                 synonym: '',
@@ -138,7 +134,7 @@
                     this.word = this.words[this.currentindex - 1].word;
                     this.synonym = this.words[this.currentindex - 1].synonym;
                     this.definition = this.words[this.currentindex - 1].definition;
-                    this.example = this.words[this.currentindex - 1].example;
+                    this.example = '"' + this.words[this.currentindex - 1].example + '"';
                 },
                 clearWordExplanations: function () {
                     this.word = '';
