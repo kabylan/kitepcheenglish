@@ -85,8 +85,8 @@
             </div>
             <div class="card mb-4 shadow-sm p-2">
                 <div class="d-flex justify-content-end mr-4 p-1">
-                    <span v-if="word.toLowerCase()!=inputWord.toLowerCase()" class="badge badge-light pb-1">Go</span>
-                    <span v-if="word.toLowerCase()==inputWord.toLowerCase()" class="badge badge-success pb-1">Go</span>
+                    <span v-if="word.toLowerCase()!=inputWord.toLowerCase()" class="badge badge-light pb-1" onclick="clearingTimeoutThenSetting()">Go</span>
+                    <span v-if="word.toLowerCase()==inputWord.toLowerCase()" class="badge badge-success pb-1" onclick="clearingTimeoutThenSetting()">Go</span>
                 </div>
                 <div class="form-signin">
                     <div class="col">
@@ -117,7 +117,7 @@
                 range: [1, words.length],
                 rangestring: 1 + '-' + words.length,
                 timespeed: 30,
-                orderrandom: false,
+                orderrandom: true,
                 word: '',
                 synonym: '',
                 definition: '',
@@ -153,7 +153,12 @@
                     this.inputWord = '';
                 },
                 increaseIndex: function () {
-                    this.currentindex++;
+                    if (this.orderrandom) {
+                        this.currentindex = Math.floor(Math.random() * this.range[1]);
+                        this.setRangeString();
+                    } else {
+                        this.currentindex++;
+                    }
                 },
                 changeFullText: function () {
                     this.fulltext = '"' + this.example.replace(this.word, this.inputWord) + '"';
@@ -179,17 +184,28 @@
             }, (app.timespeed * 1000) - 1000);
         }
 
-        var timerId = setTimeout(function tick() {
+        var timerId = 0;
 
-            next();
+        function settingTimeout() {
+            timerId = setTimeout(function tick() {
 
-            timerId = setTimeout(tick, (app.timespeed * 1000) + 1000);
+                next();
 
-            clearDisplay();
+                timerId = setTimeout(tick, (app.timespeed * 1000) + 1000);
 
-        }, 1000);
+                clearDisplay();
+
+            }, 1000);
+        }
+        
+        function clearingTimeoutThenSetting() {
+            clearTimeout(timerId);
+            app.clearWordExplanations();
+            settingTimeout();
+        }
+
+        settingTimeout();
 
     </script>
-    </div>
 </body>
 </html>
